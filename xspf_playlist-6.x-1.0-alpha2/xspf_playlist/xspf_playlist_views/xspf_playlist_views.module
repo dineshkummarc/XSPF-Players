@@ -1,0 +1,11 @@
+<?php 
+
+/**
+ * Implementation of hook_views_api().
+ */
+function xspf_playlist_views_views_api() {
+  return array(
+   'api' => 2,
+   'path' => drupal_get_path('module', 'xspf_playlist_views') .'/views',
+  );
+}

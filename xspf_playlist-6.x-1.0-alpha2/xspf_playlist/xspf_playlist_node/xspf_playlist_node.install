@@ -1,0 +1,24 @@
+<?php
+
+// $Id: xspf_playlist_node.install,v 1.1.2.5.2.4 2009/04/19 16:15:19 arthuregg Exp $
+
+/**
+ * Implementation of hook_uninstall().
+ *
+ * Remove variables handled by this module.
+ */
+function xspf_playlist_node_uninstall() {
+  // Clean up variables set by content type.
+  $types = _node_types_build();
+  if ($enabled_types = array_filter(variable_get('xspf_playlist_node_types', FALSE))) {
+    foreach ($enabled_types as $type) {
+      $variables[] = 'xspf_' . $type . '_use';
+      $variables[] = 'xspf_playlist_'. $type .'_fields';
+      $variables[] = 'xspf_'. $type .'_thumb';
+      $variables[] = 'xspf_'. $type .'_thumb_first';
+    }
+  }
+  foreach ($variables as $name) {
+    variable_del($name);
+  }
+}

@@ -1,0 +1,596 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<!--
+ ************************************************************************************************
+ * FLAM Player - Documentation                                                                  *
+ * Copyright (C) 2007 - STIMULAB
+ ************************************************************************************************
+ * Author:  STIMULAB                                                                            *
+ * Email:   info@stimulab.net                                                                   *
+ * Website: http://www.stimulab.net                                                             *
+ ************************************************************************************************
+ * FLAM Player is not Open Source, FLA and PHP codes are copyrighted and cannot be sold         *
+ *                                                                                              *
+ * YOU CAN :                                                                                    *
+ * - Install FLAM Player where you want, for personal or commercial use                         *
+ *   (The FLAM Player footer with links must stay visible)                                      *
+ *                                                                                              *
+ * YOU CANNOT :                                                                                 *
+ * - Sell FLAM Player or any portion of it, as a product or a service                           *
+ * - Copy / Modify / Rename / Decompile SWF / Redistribute FLAM Player s files wihout           *
+ *   prior authorisation of STIMULAB                                                            *
+ * - Use FLAM Player to broadcast illegal MP3 files                                             *
+ ************************************************************************************************
+-->
+<html>
+<head>
+	<title>FLAM Player Documentation</title>
+	<link rel="stylesheet" type="text/css" href="css/fp_doc.css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="window.defaultStatus='FLAM Player Documentation';">
+<a name="top"></a>
+<div id="logo"></div>
+<div id="head_author">
+	<p>Created by STIMULAB</p>
+	<p><a href="http://www.stimulab.net" target="_blank">www.stimulab.net</a></p>
+</div>
+<div id="topbar">Documentation</div>
+<div id="container">
+	<div id="summary">
+		<ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#intro">Introdution</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#whats_fp">What is FLAM Player ?</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#spec">Specifications</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#install">Installation</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#req">Requirements</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#install_process">Step by step installation</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#update_process_10_15">Step by step upgrade from version 1.0</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#add_tracks">Add tracks</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#upload">Upload MP3 file</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#auto_record">Integration - automatic tracks recording</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#add_link">External link addition - manual addition of an external mp3 link</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#edit_tracks">Edit tracks</a></li>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#manage_authors">Manage authors</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#add_edit_del_authors">Add - Edit - Delete authors</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#change_authors">Change tracks authors</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#manage_playlists">Manage playlists</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#add_del_playlists">Add - Delete playlists</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#move_playlists">Move playlists content</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#integrate">Integrate FLAM Player</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#adjust_settings">Adjust FLAM Player's settings</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#integrate_in_page">Integrate FLAM Player in a page</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#more_technical_details">More technical details</a></li>
+				<ul>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#global_work">How does it work ?</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#change_presets">Modifying predefined colors</a></li>
+					<li><a id="sub_chapter_li" href="fp_doc_en.html#flam_update_playlist">The <b>flam_update_playlist</b> Function</a></li>
+				</ul>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#known_issues">Known issues</a></li>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#credits">Credits</a></li>
+			<li id="chapter"><a id="chapter_li" href="fp_doc_en.html#license">License</a></li>
+		</ul>
+	</div>
+	
+	<div id="separator"></div>
+	
+	<div id="content">
+	
+	<!-- ************************************************************************************** INTRODUCTION	-->
+		<h2><a name="intro"></a>Introduction<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		
+		<div id="text"><p>I know my english is not perfect but i tried to do my best<br>I would appreciate some help for corrections</p></div>
+		
+		<h3><a name="whats_fp"></a>What is FLAM Player ?<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>FLAM Player means <font color="#FF6633">FLA</font>SH <font color="#FF6633">M</font>P3 <font color="#FF6633">Player</font>.</p>
+			<p>
+				This is an mp3 player built in Flash, and so, it can be integrated in an Html page.
+				It works using PHP and MySQL. The database stores the authors and tracks characteristics, the PHP scripts manage the communication between the Flash player and the MySQL database.
+			</p>
+			<p>
+				FLAM Player comprises an administration module allowing the fast addition of tracks, the edition of authors or tracks characteristics, the creation of playlists and the simple integration of the player in a page.
+			</p>
+		</div>
+		
+		<h3><a name="spec"></a>Specifications<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<h5>Version 1.56 - Player and Administration module</h5>
+			<ul>
+				<li>A couple of fixes to improve PHP5 compatibility</li>			
+			</ul>
+			<h5>Version 1.55 - Player and Administration module</h5>
+			<ul>
+				<li>The player is now available in two modes: with or without the playlist</li>			
+			</ul>
+			<h5>Version 1.5 - Player in Flash</h5>
+			<ul>
+				<li>Don't need the PHP WDDX library anymore on your server</li>			
+				<li>Shuffle mode</li>
+				<li>Can handle external links to mp3 files</li>
+				<li>Autoplay mode</li>
+				<li>Can handle accentuate (and others specials) characters for the titles, authors and filenames</li>
+				<li>Automatic skip of the track if the file is unavailable</li>
+			</ul>
+			<h5>Version 1.5 - Administration module</h5>
+			<ul>
+				<li>Add external HTTP links to mp3 files</li>
+				<li>Preselect defaults playing modes for the player <br>(Autoplay / Loop playlist / Loop tracks / Shuffle)</li>
+				<li>The permissions setting (CHMOD 777) for each new track isn't needed anymore</li>
+				<li>Availability of a function to create / update a playlist besides administration module (for the developers who want to dynamically create / update FLAM Player's playlists without using administration module)</li>
+				<li>Can handle accentuate (and others specials) characters for the titles, authors and filenames</li>
+				<li>The mp3 filenames are not renamed anymore, they strictly keep their originals filenames</li>
+				<li>More assistance and verifications in the FLAM Player installation</li>
+			</ul>				
+			<h5>Version 1.0 - Player in Flash</h5>
+			<ul>
+				<li>Stream mp3 file (up to 44 KHz)</li>
+				<li>Available languages : French and English</li>
+				<li>Player's basic controls : Backward - Play - Pause - Stop - Forward - Volume - Mute</li>
+				<li>Customizable color of the player</li>
+				<li>Movable position cursor even if the track is not completely loaded</li>
+				<li>Direct access to the email / site of the author on the player</li>
+				<li>User's settings : balance - color - loop track - loop playlist - adjustable stream buffer</li>
+				<li>Fully customizable filter (authors / playlists / orders)</li>
+			</ul>
+			
+			<h5>Version 1.0 - Administration module</h5>
+			<ul>
+				<li>Quasi-automatic installation page</li>
+				<li>Basic authentication to the administration module</li>
+				<li>HTTP upload of mp3 files</li>
+				<li>Check and correct filenames (take care of special characters)</li>
+				<li>Automatic extraction of the ID3v1.x and ID3v2 tags(Author / title informations stored in the mp3 file)</li>
+				<li>Authors analysis to prevent from double recording</li>
+				<li>Tracks Edition - Deletion - Activation - Deactivation</li>
+				<li>Authors Creation - Edition - Deletion</li>
+				<li>Playlists Creation - Edition - Deletion</li>
+				<li>Automatic code generator for the FLAM Player integration in a page</li>
+				<li>Automatic page generator with the FLAM Player in</li>
+			</ul>
+		</div>
+	
+	<!-- ************************************************************************************** INSTALLATION	-->
+		<h2><a name="install"></a>Installation<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<h3><a name="req"></a>Requirements<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>For FLAM Player to work, you need :</p>
+			<ul>
+				<li>Flash player v6 (for you and your listeners)</li>
+				<li>A WEB server (developed with Apache)</li>
+				<li>MySQL database</li>
+				<li>PHP v4.3.x (developed with 4.3.4)</li>
+				<li>A recent browser for the administration module (tested with IE5/6, NS6/7, OPERA7)</li>
+			</ul>
+
+		<div id="txt_w">NOTES:</div>
+				<ul>
+					<li id="notes"><div id="txt_w">If you don't have PHP, nor MySQL</div>Nevertheless, you can have FLAM Player on your site !<br>Yes, it is possible thru the free service we are offering on <a href="http://www.flamplayer.com" target="_blank">www.flamplayer.com</a>, you will able to embed FLAM Player in your pages without any requirement or installation.</li>
+				</ul>
+			</p>			
+		</div>		
+		
+		<h3><a name="install_process"></a>Step by step installation<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<ul>
+				<li id="clear_steps">Create a new directory to host FLAM Player on your Web server<br>(I will call it "FLAM_PLAYER_REP")</li>
+				<li id="clear_steps">The default directory to store your mp3 files is 'mp3' located under the FLAM Player forder but you can create your own on your Web server<br>(I will call it "MUSICS_REP")</li>
+				<li id="clear_steps">Extract (with subdirectories) the FLAM Player zip in a temporary local directory<br>(I will call it "LOCAL_TEMPO_REP")</li>
+				<li id="clear_steps">Edit, with a basic text editor (like Notepad), the file LOCAL_TEMPO_REP/settings/fp_settings_1.php</li>
+				<li id="clear_steps">Enter the settings to access to the database :<br>Hostname / Database name / User / Password</li>
+				<li id="clear_steps">Authentication is necessary to access to the administration module (default setting),<br>enter a username / password (default "admin" / "admin")<br><br><div id="txt_w">WARNING:</div> This is a basic authentication process, see the section <br><a id="content_li" href="fp_doc_en.html#known_issues">Known issues</a> to know more, and to see how to improve the administration module security</li>
+				<li id="clear_steps">Enter the default language for the administration module<br>("en" for English / "fr" for French)</li>
+				<li id="clear_steps">You can change the name of the tables which are about to be created</li>
+				<li id="clear_steps">Save the file and exit</li>
+				<li id="clear_steps">Upload the LOCAL_TEMPO_REP content to FLAM_PLAYER_REP</li>
+				<li id="clear_steps">Change permissions on the following files / directories to 777 (CHMOD) :<br>
+										FLAM_PLAYER_REP/settings/fp_settings_2.xml<br>
+										FLAM_PLAYER_REP/pages<br>
+										MUSICS_REP</li>
+				<li id="clear_steps">Using your web browser visit the location : http://www.your_webserver.com/FLAM_PLAYER_REP/admin/fp_init.php<br>
+				and enter the user / password defined at step 6.<br>
+				When this page starts, the necessary tables are automatically created</li>
+				<li id="clear_steps">Leave the default HTTP path or enter your whole HTTP path if you chose to have a custom MUSICS_REP directory</li>
+				<li id="clear_steps">Leave the default ABSOLUTE path or enter your whole ABSOLUTE path if you chose to have a custom MUSICS_REP directory</li>
+				<li id="clear_steps">The next parameters are not required, these are the default settings that will appear during the FLAM Player integration in a page<br><br><div id="txt_w">NOTE:</div>You can go back later to this page without risk if you have something to change</li>
+				<li id="clear_steps">Save the settings<br>Et voil&agrave;, FLAM Player is ready to be used, you can launch the administration module with<br>http://www.your_webserver.com/FLAM_PLAYER_REP/admin/fp_admin.php</li>
+			</ul>
+
+		<h3><a name="update_process_10_15"></a>Step by step upgrade from version 1.0<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<ul>
+				<li id="clear_steps">Backup the file FLAM_PLAYER_REP/settings/fp_settings_1.php from FLAM Player's version 1.0</li>
+				<li id="clear_steps">Replace all files of FLAM_PLAYER_REP (and sub-directories) by the ones of version 1.5</li>
+				<li id="clear_steps">Put back your file FLAM_PLAYER_REP/settings/fp_settings_1.php</li>
+				<li id="clear_steps">Change permissions on the following files / directories to 777 (CHMOD) :<br>FLAM_PLAYER_REP/settings/fp_settings_2.xml<br>FLAM_PLAYER_REP/pages</li>
+				<li id="clear_steps">Using your web browser visit the location : http://www.your_webserver.com/FLAM_PLAYER_REP/admin/fp_init.php<br>and login</li>
+				<li id="clear_steps">Enter the whole HTTP link of your MUSICS_REP directory</li>
+				<li id="clear_steps">The next parameters are not required, these are the default settings that will appear during the FLAM Player integration in a page<br><br><div id="txt_w">NOTE:</div>You can go back later to this page without risk if you have something to change</li>
+				<li id="clear_steps">Save the settings<br>Et voil&agrave;, FLAM Player is ready to be used, you can launch the administration module with<br>http://www.your_webserver.com/FLAM_PLAYER_REP/admin/fp_admin.php</li>
+			</ul>
+	  </div>	  
+
+	<!-- ************************************************************************************** ADD TRACKS -->
+		<h2><a name="add_tracks"></a>Add tracks<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<h3><a name="upload"></a>Upload MP3 file<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>This functionality is more a gadget than a serious transfer tool.<br>
+				Technically, this is an HTTP file transfer, and so, there is some constraints that are set by the server.<br>
+				Use this transfer mode only if you have small files or if you have a very large bandwidth.</p>
+			<p>
+				Favor the use of a standard FTP client to upload your musics in the MUSICS_REP directory you defined.			
+			</p>
+			<p>
+		  <div id="txt_w">NOTES:</div>
+				<ul>
+					<li id="notes">Only the mp3 format is allowed.</li>
+					<li id="notes">A MUSICS_REP/temp directory is created when you try to upload a file that already exists, this directory is cleaned each time the administration module is launched, so, don't store anything inside !!!</li>
+					<li id="notes">A MUSICS_REP/upload_logs directory is created at the first file transfert, you can find the history of the transfers done using this module.</li>
+				</ul>
+			</p>
+		</div>
+		
+		<h3><a name="auto_record"></a>Integration - automatic tracks recording<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>When your musics are uploaded (whatever the method) in your MUSICS_REP directory, you must record them into the database, this is the purpose of this section.</p>
+			<p>The list you can see here in this module is the list of the tracks that are present in your MUSICS_REP directory and that have not been recorded yet. The already recorded tracks are hidden.</p>
+			<p>Select one or more files, assign them an existing playlist or enter a new one and press ok ... That's all !</p>
+			<p>For each selected track, the script extract the author / title informations that are stored in the mp3 file (ID3 Tag), then it analyses the author and check if it is an existing one or if it must be added and, finally, the track and its characteristics are stored in the databse.</p>
+			<p>The title choice is done according to this logic :
+		  <ul>
+					<li>If the mp3 file contains an ID3v2 Tag, then store the title and the author from the ID3v2 Tag.</li>
+					<li>Else, if mp3 file contains an ID3v1.x Tag, then store the title and the author from the ID3v1.x Tag.</li>
+					<li>Else, store the filename as the title (without extension) and "Unknown / Inconnu" as the author.</li>
+		  </ul>
+			</p>
+			<p>
+		  <div id="txt_w">NOTE:</div>
+				<ul>
+					<li id="notes">After this automatic recording, you can modify the titles with the <a id="content_li" href="fp_doc_en.html#edit_tracks">tracks edition module</a><br>and the authors' names with the <a id="content_li" href="fp_doc_en.html#manage_authors">authors management module</a>.</li>
+				</ul>
+			</p>
+			
+		</div>
+
+		<h3><a name="add_link"></a>External link additionmanual addition of an external mp3 link<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>Here, you can add any external HTTP link to a MP3 file.<br>Assign it an existing playlist or enter a new one and press ok.</p>
+			<p>
+		  <div id="txt_w">NOTE:</div>
+				<ul>
+					<li id="notes">The script can only handle ID3 v2 Tags for external links, the reason is that ID3 v1 tags are stored at the end of the mp3 file, so it would be necessary to load the complete mp3 file to extract title and author.</li>
+				</ul>
+			</p>			
+		</div>		
+		
+	<!-- ************************************************************************************** EDIT TRACKS -->
+		<h2><a name="edit_tracks"></a>Edit tracks<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<div id="text">
+			<p>
+				The purpose of this module is the modification or the suppression of the tracks that are already recorded in the database.<br>
+				Nothing special here, your track list is displayed, and you can change the title / author / playlist / enable-disable the track.
+			</p>
+			<p>
+				I know it is sometimes hard to find a track, so i have added a filter which provide different displays and classifying.
+				Note that it is possible to launch FLAM Player with the current filter, the purpose of that is only to play some tracks if it is necessary.
+			</p>
+			<p>
+				There is two suppression modes in this module : "Delete records only" or "Delete mp3 files and records"<br>
+				(If you choose "Delete records only", your mp3 files will be back in the <a id="content_li" href="fp_doc_en.html#auto_record">Integration - automatic tracks recording</a> module).
+			</p>
+			<p>
+		  <div id="txt_w">NOTES:</div>
+				<ul>
+					<li id="notes">In this module, the edition is individual. I know that when you record a lot of mp3 files, they often don't have ID3 Tag, so you have a lot of track with "Unknown / Inconnu" as the author. To assign the right author to several tracks, favor the use of the <a id="content_li" href="fp_doc_en.html#change_authors">change tracks authors</a> module that is more handy for that case.</li>
+					<li id="notes">Active / Inactive allow you, you guess it, to display or not a track in the FLAM Player without the track to be necessarily deleted.</li>
+					<li id="notes">Of course, the "Delete mp3 files and records" mode don't erase external mp3 files, only your locals mp3 in MUSICS_REP are deteled.</li>
+				</ul>
+			</p>
+		</div>
+
+	<!-- ************************************************************************************** MANAGE AUTHORS -->
+		<h2><a name="manage_authors"></a>Manage authors<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<h3><a name="add_edit_del_authors"></a>Add - Edit - Delete authors<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>Nothing special here, i think all is evident.<br>Just note that you can't delete an author which is still linked to a track, the delete button is hidden</p>
+			<p>It is possible to enter, for each author, his Email and Website, they will be available through FLAM Player. This is ideal for communities that present the work of freelance artists.</p>
+		</div>
+		
+		<h3><a name="change_authors"></a>Change tracks authors<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>This section provide an easy way to interchange the authors, for example to reassign the right authors to tracks that didn't have ID3 Tags (with " Unknown / Inconnu " as author). The benefit of this module is that it can handle multiple tracks in one action, avoiding an onerous individual edition.</p>
+			<p>Select the origin author, one or more tracks and the target author.</p>
+		</div>
+		
+	<!-- ************************************************************************************** MANAGE PLAYLISTS -->
+		<h2><a name="manage_playlists"></a>Manage playlists<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<h3><a name="add_del_playlists"></a>Add - Delete playlists<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>
+				This section is working like the previous section <a id="content_li" href="fp_doc_en.html#add_edit_del_authors">Add - Edit - Delete authors</a>.<br>
+				Just note that you can't delete a playlist which is still containing a track, the delete button is hidden.
+			</p>
+		</div>
+		
+		<h3><a name="move_playlists"></a>Move playlists content<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>This section provide an easy way to move tracks from a playlist to another.</p>
+			<p>Select the origin playlist, one or more tracks and the destination playlist.</p>
+		</div>
+		
+	<!-- ************************************************************************************** INTEGRATE FLAM PLAYER -->
+		<h2><a name="integrate"></a>Integrate FLAM Player<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<h3><a name="adjust_settings"></a>Adjust FLAM Player's settings
+		  <div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>That is probably the most important section of the administration module, that's where you define the FLAM Player's appearance and content before you integrate it in an HTML page.</p>
+			<h5>The player's color :</h5>
+			<p>
+				<br>Select a predefined color or enter the hexadecimal code of the color you wish to have.<br>
+				If you don't know how to obtain the hexadecimal code of a specific color, you can use one of these excellent links :
+			</p>
+			<p>
+		  <li><a href="http://www.colormatch.dk/" target="_blank">http://www.colormatch.dk/</a></li>
+				<li><a href="http://www.easyrgb.com/" target="_blank">http://www.easyrgb.com/</a></li>
+				<li><a href="http://www.pourpre.com/chromograf/index.html" target="_blank">http://www.pourpre.com/chromograf/index.html</a></li>
+			</p>
+			<p>You can customize the predefined colors, read the section <a id="content_li" href="fp_doc_en.html#change_presets">Modifying predefined colors</a> to know how to proceed.</p>
+			
+			<h5>The player's background color :</h5>
+			<p>
+				<br>
+				The FLAM Player shape is not a perfect square, so you will see
+				the background color next to the rounded corners in your page.
+				The generated code for the FLAM Player integration uses the Flash's
+				transparent	mode, but
+				this option is not compatible with all browsers. To be sure,
+				you can enter the background color of your future HTML page to hide these
+				corners.
+			</p>
+			
+			<h5>Next options :</h5>
+			<p>
+				<br>The next options are simply the content adjustment, which language ? which playlist ? which order ?<br>
+				Take note that the filters are accumulative, so, if you select the playlist "mixes" and the author "DJFoo", FLAM Player will only display "DJFoo" tracks that are in the "mixes" playlist.
+			</p>
+			<p>Never go to the next step if the FLAM Player's preview is not exactly what you wish to have (The new code is generated each time you click on "update display").</p>			
+		</div>
+		
+		<h3><a name="integrate_in_page"></a>Integrate FLAM Player in a page<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+		<div id="text">
+			<p>At this step, the FLAM Player's preview should be exactly what you wish to integrate in your HTML page.</p>
+			<p>
+				To integrate FLAM Player, you have two ways :
+		  <ul>
+					<li>Copy / paste the generated code where you want in your page.</li>
+					<li>Clic on "create a basic page with the player in", and then, an HTML page is generated in FLAM_PLAYER_REP/pages</li>
+		  </ul>
+			</p>
+			<div id="txt_w">NOTES:</div>
+				<ul>
+					<li id="notes">The genarated pages can be moved where you want, even on another website.</li>
+					<li id="notes">It is the same for the code, but don't forget that even if FLAM Player is integrated on another website, it will still be loaded from where it was generated.</li>
+			</ul>
+		</div>
+		
+	<!-- ************************************************************************************** MORE TECHNICAL DETAILS -->
+		<h2><a name="more_technical_details"></a>More technical details<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<div id="text">
+			<h3><a name="global_work"></a>Global working process<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+			<p>Working process diagram :</p>
+			<div id="schema"></div>
+			<p>
+				<br>What is interesting here is that FLAM Player's appearance and content are set by the variables which are in the page.
+				<br>If you are a developer, you could control FLAM Player dynamically.
+			</p>
+			<p>Here is an example of the code generated by the administration module :</p>
+			<div id="code">
+				<pre>
+				
+&lt;object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+	codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+	width="300" 
+	height="315"&gt;
+		&lt;param name=movie value="http://www.yoursite.com/flamplayer/flam-player.swf"&gt;
+		<div id="txt_y">&lt;param name=flashVars value="fp_root_url=http://www.yoursite.com/flamplayer/&ovr_color=0x75855C&ovr_langage=en&ovr_playlist=default_playlist&ovr_author=all&ovr_order=name_artist&ovr_order_direction=ASC&amp;ovr_autoplay=1&amp;ovr_loop_playlist=1&amp;ovr_loop_tracks=0&amp;ovr_shuffle=0"&gt;</div>
+		&lt;param name=menu value=false&gt;
+		&lt;param name=quality value=best&gt;
+		&lt;param name=wmode value=transparent&gt;
+		&lt;param name=bgcolor value=#383838&gt;
+              	
+	&lt;embed src="http://www.yoursite.com/flamplayer/flam-player.swf"
+		<div id="txt_y">flashVars="fp_root_url=http://www.yoursite.com/flamplayer/&ovr_color=0x999999&ovr_langage=en&ovr_playlist=default_playlist&ovr_author=all&ovr_order=name_artist&ovr_order_direction=ASC&amp;ovr_autoplay=1&amp;ovr_loop_playlist=1&amp;ovr_loop_tracks=0&amp;ovr_shuffle=0""</div>
+		menu=false
+		quality=best
+		wmode=transparent
+		bgcolor=#383838
+		width="300"
+		height="315"
+		type="application/x-shockwave-flash"
+		pluginspage="http://www.macromedia.com/go/getflashplayer"&gt;
+	&lt;/embed&gt;
+&lt;/object&gt;</pre>
+			</div>
+			<p><br>The two yellow lines are those who condition all.<br>
+				These two lines includent exactly the same informations, the syntax is quite different to ensure compatibility between different browsers.
+			</p>
+			<p>The flashVars parameter provide the way to inject variables in a Flash movie,<br> Here is the variables for FLAM Player :</p>
+			<p>fp_root_url inform the Flash movie about where FLAM Player was installed<br><font color="#FFCC66">fp_root_url</font>=http://www.yoursite.com/flamplayer/</p>
+			<p>ovr_color inform the Flash movie about the requested player's color<br>&amp;<font color="#FFCC66">ovr_color</font>=0x999999</p>
+			<p>ovr_langage inform the Flash movie about the requested player's language<br>&amp;<font color="#FFCC66">ovr_langage</font>=en</p>
+			<p>ovr_playlist inform the Flash movie about the requested playlist<br>&amp;<font color="#FFCC66">ovr_playlist</font>=default_playlist</p>
+			<p>ovr_author inform the Flash movie about the requested author<br>&amp;<font color="#FFCC66">ovr_author</font>=all</p>
+			<p>ovr_order inform the Flash movie about the classifying criterion<br>&amp;<font color="#FFCC66">ovr_order</font>=name_artist</p>
+			<p>ovr_order_direction inform the Flash movie about the classifying order direction<br>&amp;<font color="#FFCC66">ovr_order_direction</font>=ASC</p>
+			<p>ovr_autoplay inform the Flash movie if the autoplay mode must be activated or not<br>&amp;<font color="#FFCC66">ovr_autoplay</font>=1</p>
+	  		<p>ovr_loop_playlist inform the Flash movie if the Loop playlist mode must be activated or not<br>&amp;<font color="#FFCC66">ovr_loop_playlist</font>=1</p>
+			<p>ovr_loop_tracks inform the Flash movie if the Loop tracks mode must be activated or not<br>&amp;<font color="#FFCC66">ovr_loop_tracks</font>=0</p>
+			<p>ovr_shuffle inform the Flash movie if the shuffle mode must be activated or not<br>&amp;<font color="#FFCC66">ovr_shuffle</font>=0</p>			
+			<div id="txt_w">NOTE:</div>
+				<ul>
+					<li id="notes">The background color is a standard parameter of Flash, it has nothing to do with FLAM Player variables,<br>this is the "bgcolor" parameter.</li>
+				</ul>
+
+			<h3><a name="change_presets"></a>Modifying predefined colors<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>
+			<p>
+				To customize the predefined colors palette, edit the file FLAM_PLAYER_REP/settings/fp_settings_2.xml.<br>
+				The section identified by INDEX[9] is the 10 predefined color codes.
+				Always in hexadecimal , always with the RRGGBB format and separated by commas.
+			</p>
+			
+			<h3><a name="flam_update_playlist"></a>The 'flam_update_playlist' Function<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h3>			
+			<p>
+				Since version 1.5, a function is available for the developers who want to dynamically create / update FLAM Player's playlists without using administration module.
+				For example, if you already have a site with mp3 playlists and authors directories, you can easily import these datas into FLAM Player thru this function.
+			</p>
+			<p><div id="txt_w">How to ?</div></p>
+			<p>1. Include in your PHP script the 3 following FLAM Player's scripts :</p>
+				<ul>
+					<li><font color="#FFCC66">require_once('...YOUR_PATH.../FLAM_PLAYER_REP/includes/fp_admin_functions.php');</font></li>
+					<li><font color="#FFCC66">require_once('...YOUR_PATH.../FLAM_PLAYER_REP/includes/ez_sql.php');</font></li>					
+					<li><font color="#FFCC66">require_once('...YOUR_PATH.../FLAM_PLAYER_REP/settings/fp_settings_1.php');</font></li>
+				</ul>
+				
+			<p>2. Export your datas to a two-dimensional array which has the following structure :</p>
+			<pre>
+Array
+(
+   [0] => Array
+       (
+           ["artist_name"] => artist 0 name
+           ["artist_email"] => artist 0 email
+           ["artist_website"] => artist 0 site
+           ["music_title"] => track 0 title
+           ["music_link"] => mp3 0 link
+       )
+
+   [1] => Array
+       (
+           ["artist_name"] => artist 1 name
+           ["artist_email"] => artist 1 email
+           ["artist_website"] => artist 1 site
+           ["music_title"] => track 1 title
+           ["music_link"] => mp3 1 link
+       )
+
+
+    ( ... )
+
+
+   [<font color="#FFCC66">n</font>] => Array
+       (
+           ["artist_name"] => artist <font color="#FFCC66">n</font> name
+           ["artist_email"] => artist <font color="#FFCC66">n</font> email
+           ["artist_website"] => artist <font color="#FFCC66">n</font> site
+           ["music_title"] => track <font color="#FFCC66">n</font> title
+           ["music_link"] => mp3 <font color="#FFCC66">n</font> link
+       }
+}
+			</pre>
+			<p>3. Call the function like below :</p>
+				<ul>
+					<li><font color="#FFCC66">flam_update_playlist ( "<font color="#FF6633">Name of the playlist to create or update</font>", $Name_of_the_array_previously_created );</font></li>
+				</ul>			
+			
+		    <div id="txt_w">NOTES:</div>
+				<ul>
+					<li id="notes"><font color="#FF6633">WARNING :</font> This function is a full update function for the concerned playlist, it adds news tracks, update modified tracks and DELETE tracks that wasn't provided by the new listing  ! So don't use it to add a track to the existing content, export your full  playlist each time it is updated.</li>				
+					<li id="notes"><font color="#FF6633">WARNING :</font> Don't use space nor exotics characters for the playlist name, otherwise it will be renamed to fit standard.</li>
+					<li id="notes">You can find an example in <font color="#FFCC66">FLAM_PLAYER_REP / admin / fp_update_playlist_example.php</font><br>Note that the function call is disable with comments for security reasons.</li>
+					<li id="notes">About mp3 links, all the links without "http://..." will be considered as local files stored in MUSIQUES_REP.</li>
+					<li id="notes">ID3 tags are not extracted during this update, so if you don't provide any author or title, the default titles will be the filename without the .mp3 extension.</li>
+					<li id="notes">Of course, the demo links don't exists in reality, so if you can't ear anything with the player, that's normal :) .</li>
+				</ul>
+			</p>			
+				
+		</div>
+	
+	<!-- ************************************************************************************** KNOWN ISSUES -->
+		<h2><a name="known_issues"></a>Known issues<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<div id="text">
+			<ul>
+				<li id="notes">
+					The authentication process is very basic.<br>
+					If you have precious datas and if you want to improve security, perhaps you should use something like .htaccess.<br>
+					If you choose that, you can disable the basic authentication process with the edition of FLAM_PLAYER_REP/settings/fp_settings_1.php.<br>
+			Change the line : $login_enable =                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       "yes"; to $login_enable = "no";			  </li>
+				<li id="notes"> have tested the insertion in the database of 200 mp3 files in one time, in one playlist.<br>
+					The script is freezing with a such amount of files, probably because of the form POST size.
+					So, if you have a lot of mp3 to record in one time, proceed with paquets of maximum 30 files.</li>
+				<li id="notes"><div id="txt_w">Sounds Play Too Fast and Sound like "the Chipmunks"</div>This occurs if you are attempting stream audio that does not comply with the allowable sampling rates. Make sure that your audio complies with the sampling rates allowed by Flash streaming audio, which are: 44.1, 22 and 11kHz. These numbers refer to the number of samples per second, not to be confused with the bitrate (which is measured in Kbps, e.g., commonly seen as 128 KB). </li>
+			</ul>
+		</div>
+	
+	<!-- ************************************************************************************** CREDITS -->
+		<h2><a name="credits"></a>Credits<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<div id="text">
+			<ul>
+				<li id="notes">To the creators of these fabulous products: <a href="http://www.php.net" target="_blank">PHP</a>, <a href="http://www.mysql.com/" target="_blank">MySQL</a>, <a href="http://www.apache.org/" target="_blank">Apache</a></li>
+				<li id="notes">To <a href="mailto:lousimps@pacbell.net">Louis Simpson</a> for his excellent <a href="http://www.actionscript.org/tutorials/advanced/Php_procedural_functions_from_within_Flash_MX/index.shtml" target="_blank">tutorial</a> on <a href="http://www.actionscript.org" target="_blank">http://www.actionscript.org</a></li>
+				<li id="notes">To <a href="mailto:justin@visunet.ie">Justin Vincent</a> for his prodigious class <a href="http://php.justinvincent.com" target="_blank">ezSQL</a></li>
+				<li id="notes">To Jeffrey M. Johns for his excellent tutorial <a href="http://www.phpfreaks.com/tutorials/85/0.php" target="_blank">&quot;Writing a file upload class&quot;</a> on <a href="http://www.phpfreaks.com" target="_blank">PHP Freaks</a></li>
+				<li id="notes">To <a href="mailto:tadeu_fo@ig.com.br">Tadeu Oliveira</a> for his class <a href="http://www.phpclasses.org/browse/author/98412.html" target="_blank">ID3v2 Tag Reader</a></li>
+				<li id="notes">To <a href="mailto:zw@NOSPAM.zeb.biz">Fatih Hood</a> for his class <a href="http://www.phpclasses.org/browse/author/133466.html" target="_blank">MP3 ID3 v1.x Read and Write</a></li>
+			</ul>
+		</div>
+	
+	<!-- ************************************************************************************** LICENCE -->
+		<h2><a name="license"></a>Licence<div id="return_top"><a href="fp_doc_en.html#top">[Table of contents]</a></div></h2>
+		<div id="text">
+			<pre>
+Copyright (C) 2007 STIMULAB
+
+FLAM Player is not Open Source, FLA and PHP source codes are copyrighted and cannot be sold
+
+YOU CAN :
+- Install FLAM Player where you want, for personal or commercial use
+  (The FLAM Player footer with links must stay visible)
+
+YOU CANNOT :
+- Sell FLAM Player or any portion of it, as a product or a service
+
+- Copy / Modify / Rename / Decompile SWF / Redistribute FLAM Player's files wihout
+  prior authorisation of STIMULAB
+
+- Use FLAM Player to broadcast illegal MP3 files
+
+----------------------------------------------------------------
+NO WARRANTY
+
+    BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
+TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
+PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+    IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
+TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
+YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
+PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.			
+			</pre>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+; $Id: xspf_playlist_views.info,v 1.1.4.2 2009/04/07 19:31:31 arthuregg Exp $
+name = "XSPF Playlist Views"
+description = "Integrates XSPF playists into Views."
+package = "Media"
+dependencies[] = xspf_playlist_node
+dependencies[] = views
+core = 6.x
+; Information added by drupal.org packaging script on 2009-04-19
+version = "6.x-1.0-alpha2"
+core = "6.x"
+project = "xspf_playlist"
+datestamp = "1240158085"
+

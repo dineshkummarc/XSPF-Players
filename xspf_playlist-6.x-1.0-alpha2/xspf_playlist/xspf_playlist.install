@@ -1,0 +1,23 @@
+<?php
+
+// $Id: xspf_playlist.install,v 1.1.2.2.2.1 2008/12/14 18:37:12 arthuregg Exp $
+
+/**
+ * Implmentation of hook_uninstall().
+ *
+ * Remove variables handled by this module.
+ */
+function xspf_playlist_uninstall() {
+  // Remove tables.
+  drupal_uninstall_schema('xspf_playlist');
+
+  $variables = array(
+    'xspf_playlist_title',
+    'xspf_playlist_info',
+    'xspfp_filetype',
+  );
+  foreach ($variables as $name) {
+    variable_del($name);
+  }
+}
+

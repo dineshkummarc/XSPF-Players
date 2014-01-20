@@ -1,0 +1,97 @@
+<?xml version="1.0" ?><fp_settings>
+		
+		<!-- INDEX[0] (Overridable) : The Player main color -->
+		<!-- With this parameter, you can set the default player color in the administration module -->
+		<!-- Hexadecimal format : 0xRRVVBB -->
+		<!-- Example : 0xA94001 -->
+		<fp_parameter>0xBDA88A</fp_parameter>
+		
+		<!-- INDEX[1] (Overridable) : Langage setting -->
+		<!-- With this parameter, you can set the default player language in the administration module -->
+		<!-- The langage setting can only be : en or fr -->
+		<!-- Example : en -->
+		<fp_parameter>en</fp_parameter>
+		
+		<!-- INDEX[2] : Musics URL, the mp3 files location, The complete URL !!! -->
+		<!-- Example : http://www.mywebsite.com/subdirectories/musics/ -->
+		<fp_parameter>default</fp_parameter>
+		
+		<!-- INDEX[3] : Artist Email / Web buttons visibility -->
+		<!-- If the artist doesn't have any Email or Website entered in the database, the button(s) won't be visible even with this parameter set to 1 -->
+		<!-- But if the artist has an Email or Website entered, you can force desactivation of the buttons visibility with 0 -->
+		<!-- 0 : Hidden -->
+		<!-- 1 : Visible -->
+		<fp_parameter>1</fp_parameter>
+		
+		<!-- INDEX[4] : Buffer Time setting (seconds) -->
+		<!-- The number of seconds before the player starts playing while a track is loading -->
+		<!-- Must be between 0 and 99 -->
+		<fp_parameter>5</fp_parameter>
+		
+		<!-- INDEX[5] (Overridable) : Playlist Filter -->
+		<!-- Each track entered in the database can be assigned to a playlist -->
+		<!-- With this parameter, you can set the default playlist selection in the administration module -->
+		<!-- Example : ambient_loop -->
+		<!-- Note : If you don't want any filter, enter all -->
+		<!-- Note : If you just downloaded FLAM Player, the default playlist name is default_playlist -->
+		<fp_parameter>default_playlist</fp_parameter>
+		
+		<!-- INDEX[6] (Overridable) : Author Filter -->
+		<!-- Each track entered in the database is assigned to an author -->
+		<!-- With this parameter, you can set the default artist selection in the administration module, Enter the Artist ID only ! -->
+		<!-- Example : 9 -->
+		<!-- Note : If you don't want any filter (or if you only have one author), enter all -->
+		<fp_parameter>all</fp_parameter>
+		
+		<!-- INDEX[7] (Overridable) : Order setting -->
+		<!-- With this parameter, you can set the default display order in the administration module -->
+		<!-- Enter the name of the field to order by -->
+		<!-- Example : date_music -->
+		<!-- Note : If you don't want any order, enter default : default -->
+		<!-- Note : The next parameter "Order direction setting" must be set -->
+		<fp_parameter>date_music</fp_parameter>
+		
+		<!-- INDEX[8] (Overridable) : Order direction setting -->
+		<!-- Order setting complement -->
+		<!-- Enter ASC or DESC (for ascending or descending)   -->
+		<!-- Example : DESC -->
+		<!-- Note : If you put something in the previous Order setting, you must define here a direction  -->
+		<!--        If you put default in the previous Order setting, you must put here default too  -->
+		<fp_parameter>DESC</fp_parameter>
+		
+		<!-- INDEX[9] : Player color presets -->
+		<!-- Put here hexadecimal codes of the colors you often use for the player -->
+		<!-- Only 10 colors, separated by "," -->
+		<!-- Example : A94001,D17F47,BDA88A,33293D,7F7A8A,949DB0,1A3D4D,477A85,754D70,75855C -->
+		<fp_parameter>A94001,D17F47,BDA88A,33293D,7F7A8A,949DB0,1A3D4D,477A85,754D70,75855C</fp_parameter>
+		
+		<!-- INDEX[10] (Overridable) : Auto play mode -->
+		<!-- With this parameter, you can set by default if autoplay is "off" or "on" in the administration module -->
+		<!-- 0 : Autoplay is OFF by default -->
+		<!-- 1 : Autoplay is On by default -->
+		<fp_parameter>1</fp_parameter>
+		
+		<!-- INDEX[11] (Overridable) : Loop playlist -->
+		<!-- With this parameter, you can set by default if loop playlist is "off" or "on" in the administration module -->
+		<!-- 0 : Loop playlist is OFF by default -->
+		<!-- 1 : Loop playlist is On by default -->
+		<fp_parameter>1</fp_parameter>
+		
+		<!-- INDEX[12] (Overridable) : Loop tracks -->
+		<!-- With this parameter, you can set by default if loop tracks is "off" or "on" in the administration module -->
+		<!-- 0 : Loop tracks is OFF by default -->
+		<!-- 1 : Loop tracks is On by default -->
+		<fp_parameter>0</fp_parameter>
+		
+		<!-- INDEX[13] (Overridable) : Shuffle -->
+		<!-- With this parameter, you can set by default if Shuffle is "off" or "on" in the administration module -->
+		<!-- 0 : Shuffle is OFF by default -->
+		<!-- 1 : Shuffle is On by default -->
+		<fp_parameter>0</fp_parameter>
+		
+		<!-- INDEX[14] For debugging purposes / Manual musics local path -->
+		<!-- Force local path of the musics directory instead of automatic detection  -->
+		<!-- Leave "auto" unless you are sure of what you're doing -->
+		<!-- ex: "/usr/local/apache2/htdocs/musics/" or "c:/inetpub/www/musics/" -->
+		<fp_parameter>default</fp_parameter>
+</fp_settings>

@@ -1,0 +1,66 @@
+Rave Player WordPress Plugin
+v1.0.14 - 1/18/2014
+
+Copyright Mike Gieson
+
+This software is governed under the following EULA (End User License Agreement)
+http://www.wimpyplayer.com/license/eula-tools.html
+
+Installation and usage instructions:
+http://www.wimpyplayer.com/products/wimpy_rave_wordpress_plugin.html
+
+Quick Setup:
+
+1. Unzip package.
+	If you're reading this, you've obviously made it this far.
+
+	IMPORTANT: When unzipping, be sure to keep the directory structure in tact.
+
+	The directory structure should resemble:
+
+	- [images]
+	- [skins]
+	LICENSE.txt
+	_READ ME.txt
+	admin.css
+	admin.js
+	admin.php
+	jquery.dragsort.js
+	rave.js
+	rave.swf
+	rave_fullscreen.html
+	rave_popout.html
+	raveplayer_about.php
+	raveplayer_customizer.php
+	raveplayer_playlister.php
+	raveplayer_register.php
+	thinker.gif
+
+2. Setup new folder + upload plugin
+
+	- Create a new folder named "rave-player" within you WordPress "plugins" folder, which is typeically located here:
+		http://www.yoursite.com/wp-content/plugins/
+
+		e.g:
+		http://www.yoursite.com/wp-content/plugins/rave-player/
+
+	- Upload the contents of this package to the newly created folder.
+
+3. Activate the plugin
+	- Log in to your WordPress Admin Section and click the "Plugins" tab on the right.
+
+4. Create a new player
+	- The Rave Player menu should appear in the left-hand side bar toward the bottom.
+	- Click "Players" and create a new player.
+	- Underneath the preview player you'll see a "short code, which should look like:
+		[rave]
+	- Copy and paste [rave] into your page or post
+
+5. Set up a widget:
+	- Click "Appearance" from the admin menu, then "Widgets"
+	- Find "Rave Player" and drag it into a widget area.
+	- Select the player you wish to appear in the sidebar.
+
+6. To use the "link" option (ecommerce, or have playlist items link out to another page)
+	- In your Wordpress "media" section, select a media file and enter a URL to the external page in the "description" field. If the description field is a URL, Rave will use that URL for the "link" when rendering a playlist.
+

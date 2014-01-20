@@ -1,0 +1,343 @@
+<?php
+
+// $Id: xspf_playlist_thumb.module,v 1.1.2.3.2.7 2009/04/14 16:13:21 arthuregg Exp $
+
+/* ******************************************************* */
+/* DRUPAL HOOKS */
+/* ******************************************************* */
+
+/**
+ * Implementation of hook_form_alter
+ * @param $form_id
+ *   drupal form identification
+ * @param $form
+ *   drupal form
+ * @return unknown_type
+ */
+function xspf_playlist_thumb_form_alter(&$form, $form_state, $form_id) {
+  // alter the node settings
+
+  // alter the settings on the admin/settings/xspf_playlist/CONTENT_TYPE form
+  if ($form_id == 'xspf_playlist_node_admin_content_type_form') {
+
+    // get the content type
+    $type = $form['content_type']['#value'];
+
+    // get any modules which implement thumbnails
+    $fields = module_invoke_all('xspf_playlist_thumbnail', 'define', null);
+    $form['content']['thetype_'. $type]['xspf_'. $type .'_thumb'] = array(
+      '#title' => t('Default thumbnail field'),
+      '#type' => 'select',
+      '#options' => $fields,
+      '#multiple' => true,
+      '#default_value' => variable_get('xspf_'. $type .'_thumb', ''),
+      '#description' => t('Select the thumbnail type you would like to use. You can select multiple, but if multiple thumbnails for an item exist, the first one found will be used.'),
+    );
+
+    // get any modules which implement configuration for thumbnails
+    $configurations = module_invoke_all('xspf_playlist_thumbnail', 'config', $my_node);
+    if ($configurations) {
+      $form['content']['thetype_'. $type][] = $configurations;
+    }
+
+    $form['content']['thetype_'. $type]['xspf_'. $type .'_thumb_first'] = array(
+      '#title' => t('Use thumbnail only for first playlist item'),
+      '#type' => 'checkbox',
+      '#default_value' => variable_get('xspf_'. $type .'_thumb_first', false),
+      '#description' => t('By default, all items on the playlist have a thumbnail applied. This can create conditions where the thumbnail is shown behind the content being displayed (especially on images). If you check this, a thumbnail will only be show on the first item on the playlist.'),
+    );
+  }
+}
+
+
+/* ******************************************************* */
+/* xspf_playlist xspf hooks */
+/* ******************************************************* */
+
+/**
+ * Implementation of hook_xspf_playlist_item_alter().
+ * Add the thumbnail into the playlist
+ *
+ * Add player and bookmark metadata.
+ * @param array $item
+ * @param object $node
+ * @param string $url
+ * @param string $thumb
+ * @param $meta
+ */
+function xspf_playlist_thumb_xspf_playlist_item_alter(&$item, $node, $url) {
+  // check which thumb value to use
+  $thumb = $thumb ? $thumb : xspf_playlist_thumb_get($node, $url);
+  if ($thumb) {
+    $item[] = array(
+      'key' => 'image',
+      'value' => $thumb,
+    );
+  }
+}
+
+
+/**
+ * Get the thumbnail for this playlist item. If there is an explicitly registered
+ * thumbnail, use that. If not, return the first thumbnail found.
+ *
+ * @param object $node is a drupal node object
+ * @return string
+ */
+function xspf_playlist_thumb_get($node, $item_path = '') {
+  if ($item_path) {
+    // First, check if there is a thumbnail explicitly registered to the item.
+    $item = array(
+      'type' => 'node',
+      'vid' => $node->vid,
+      'item_path' => $item_path,
+    );
+    // If so, return it.
+    if ($item = xspf_playlist_thumb_load($item)) {
+      return $item['thumbnail_path'];
+    }
+  }
+  // Otherwise, look for modules that return potential thumbs.
+  $modules = variable_get('xspf_'. $node->type .'_thumb', false);
+  if ($modules) {
+    foreach ($modules as $module) {
+      // split the name into parts
+      list($module_name, $separator, $config) = split('[--]', $module);
+      // invoke the thumbnail hook
+      if (module_exists($module_name)) {
+        if ($thumb = module_invoke($module_name, 'xspf_playlist_thumbnail', 'return', $node, $config)) {
+          // Some modules may pass back an array. Only take the first item
+          if (is_array($thumb)) {$thumb = $thumb[0]; }
+          // We're only returning the specified thumb.
+          return $thumb;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * implements hook_xspf_playlist_thumbnail
+ * build the default options for the admin screen
+ * @param $op is the operation happening
+ * @param $node is a node object
+ * @param $config is which config to run
+ */
+function xspf_playlist_thumb_xspf_playlist_thumbnail ($op, $node, $config = null) {
+  switch($op){
+    case 'define':
+      $items = array(
+        'xspf_playlist_thumb--1' => t('none'),
+        'xspf_playlist_thumb--2' => t('XSPF: Default thumbnail'),
+        'xspf_playlist_thumb--3' => t('Drupal: Upload attached files'),
+      );
+      return $items;
+    break;
+
+    case 'config':
+      // return a configuration array
+      $form['xspf_playlist_thumb_'. $node->type] = array(
+        '#type' => 'textfield',
+        '#title' => t('Path to default thumbnail'),
+        '#default_value' => variable_get('xspf_playlist_thumb_'. $node->type, null),
+        '#description' => t('Enter a path to a thumbnail you wish to use as a default'),
+        '#prefix' => '<div id="xspf_playlist--2_config" class="xspf_playlist_config_thumb">',
+        '#suffix' => '</div>',
+      );
+      return $form;
+    break;
+
+    case 'return':
+      switch ($config){
+        case 1:
+          return;
+        break;
+        case 2:
+          // return default thumbnail
+          return variable_get('xspf_playlist_thumb_'. $node->type, null);
+        break;
+
+        case 3:
+          return xspf_playlist_thumb_get_attached_files($node);
+        break;
+
+      }
+    break;
+  }
+}
+
+
+/**
+ * Return an array of files attached to a node suitable for use as thumbnail images.
+ *
+ * @param $node
+ *   A node object.
+ */
+function xspf_playlist_thumb_get_attached_files($node) {
+  if (isset($node->files)) {
+    $thumbs = array();
+    foreach($node->files as $file) {
+      $info = pathinfo($file->filename);
+      if (in_array($info['extension'], array('jpeg', 'jpg', 'gif', 'png'))) {
+        $thumbs[] = $file->filepath;
+      }
+    }
+    if ($thumbs) {return $thumbs;}
+  }
+}
+
+/* ******************************************************** */
+/* THIS IS ALL OLD STUFF WHICH SHOULD BE REIMPLEMENTED AT
+ * SOME POINT IN THE NEAR FUTURE
+ */
+
+
+/**
+ * this wraps the theme image function so we can pass urls and paths
+ */
+/*
+function theme_xspf_playlist_thumb_image($path, $alt = '', $title = '', $attributes = '', $getsize = false) {
+  if (strstr($path, 'http://')) {
+    $attributes = drupal_attributes($attributes);
+    return '<img src="'. check_url($path) .'" alt="'. check_plain($alt) .'" title="'. check_plain($title) .'" '. $attributes .' />';
+  }
+  else {
+    return theme('image', $path, $alt, $title, $attributes, $getsize);
+  }
+}
+*/
+
+/**
+ * this builds the images that can be used for picking
+ * @param $thumbs is an array of thumbnails
+ * @param int $xid is the playlist id that this is related to
+ * @return html
+ */
+/*
+function theme_xspf_playlist_thumbnailer_picker($thumbs, $xid) {
+  $output = array();
+
+  // Add the JS and CSS.
+  $path = drupal_get_path('module', 'xspf_playlist_thumb');
+  drupal_add_js($path . '/xspf_playlist_thumb.js');
+  drupal_add_css($path . '/xspf_playlist_thumb.css');
+
+  $output[] = '<div class="xspf_playlist-picker" id="xspf_'. $xid .'">';
+  foreach ($thumbs as $id => $path) {
+    $output[] = '<div class="xspf_playlist-thumb" id="xspf_thumb_'. $xid .'_'. $id .'">'. theme('xspf_playlist_thumb_image', $path) ."</div>\n";
+  }
+  $output[] = '<div class="xspf_playlist-selected"></div>';
+  $output[] = '</div>';
+  return implode($output);
+}
+*/
+
+/**
+ * Save data for a given thumbnail item.
+ *
+ * @param array $item
+ *   An item to be saved having the following keys:
+ *   - string type: The type of object, e.g., 'node'.
+ *   - id: The ID of the object, e.g., a node's nid value.
+ *   - vid: A version ID if the object takes one, e.g., a node's vid value.
+ *   - item_path: The path to a file representing the playlist item.
+ *   - thumbnail_path: The path to a file representing the playlist
+ *     item's thumbnail image.
+ */
+/*
+function xspf_playlist_thumb_save($item) {
+  // Use a VID as the primary key if present, otherwise an ID.
+  $key = isset($item['vid']) && $item['vid'] ? 'vid' : 'id';
+  // Test for an existing record.
+  $result = db_fetch_array(db_query("SELECT * FROM {xspf_playlist_thumb} WHERE $key = %d AND type = '%s'", $item[$key], $item['type']));
+  // If found, update.
+  if ($result[$item[$key]]) {
+    db_query("UPDATE {xspf_playlist_thumb} SET item_path = '%s', thumbnail_path = '%s' WHERE $key = %d AND type = '%s'", $item['item_path'], $item['thumbnail_path'], $item[$key], $item['type']);
+  }
+  // Otherwise, create a new record.
+  else {
+    db_query("INSERT INTO {xspf_playlist_thumb} (type, id, vid, item_path, thumbnail_path) VALUES ('%s', %d, %d, '%s', '%s')", $item['type'], $item['id'], $item['vid'], $item['item_path'], $item['thumbnail_path']);
+  }
+}
+*/
+
+/**
+ * Delete existing thumbnail data for an item.
+ *
+ * @param string $type
+ *   The type of object, e.g., 'node'.
+ * @param int $id
+ *   The ID of the object, e.g., a node's nid value.
+ * @param int $vid
+ *   A version ID if the object takes one, e.g., a node's vid value.
+ */
+/*
+function xspf_playlist_thumb_delete($type, $id = NULL, $vid = NULL) {
+  if ($vid) {
+    db_query("DELETE FROM {xspf_playlist_thumb} WHERE vid = %d AND type = '%s'", $vid, $type);
+  }
+  elseif ($id) {
+    db_query("DELETE FROM {xspf_playlist_thumb} WHERE id = %d AND type = '%s'", $id, $type);
+  }
+}
+*/
+
+/**
+ * Retrieve data for a given thumbnail item.
+ *
+ * @param array $item
+ *   An item to be saved having the following keys:
+ *   - type: The type of object, e.g., 'node'.
+ *   - id: The ID of the object, e.g., a node's nid value.
+ *   - vid: A version ID if the object takes one, e.g., a node's vid value.
+ *   - item_path: The path to a file representing the playlist item.
+ *   - thumbnail_path: The path to a file representing the playlist
+ *     item's thumbnail image.
+ */
+
+function xspf_playlist_thumb_load($item) {
+
+  // At a minimum, test for a given type.
+  $conditions = array("type = '%s'");
+  $parameters = array($item['type']);
+
+  // For other properties, test for them if present in the incoming item.
+  $fields = array(
+    'id' => '%d',
+    'vid' => '%d',
+    'item_path' => "'%s'",
+    'thumbnail_path' => "'%s'",
+  );
+  foreach ($fields as $key => $placeholder) {
+    if (isset($item[$key])) {
+      $conditions[] = 'id = ' . $placeholder;
+      $parameters[] = $item[$key];
+    }
+  }
+  return db_fetch_array(db_query('SELECT * FROM {xspf_playlist_thumb} WHERE ' . implode(' AND ', $conditions), $parameters));
+}
+
+
+/**
+ * @TODO need to figure out if this is going to be supported
+ * Implementation of hook_nodeapi
+ *
+ * @param object $node
+ * @param string $op
+ * @param boolean $a3
+ * @param boolean $a4
+ */
+/*
+function xspf_playlist_thumb_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  // Are any thumbnails being submitted?
+  if (($op == 'insert' || $op == 'update') && isset($node->xspf_thumbnails)) {
+    xspf_playlist_node_thumb_save($node);
+  }
+  elseif ($op == 'delete') {
+    xspf_playlist_node_thumb_delete($node);
+  }
+  elseif ($op == 'delete revision') {
+    xspf_playlist_node_thumb_delete($node, TRUE);
+  }
+}
+*/

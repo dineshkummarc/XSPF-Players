@@ -1,0 +1,142 @@
+<?php
+
+// $Id$
+
+/**
+ * @FILE This module provides integration with the CCK module with XSPF playlists.
+ *       Provides support for image fields, text, video_cck
+ *
+ */
+
+
+
+/* ********************************************** */
+/* XSPF HOOKS                                     */
+/* ********************************************** */
+
+/**
+* Implementation of hook_xspf_playlist_use
+* @param string $op
+* @param object $node
+* @param array $config
+*/
+function xspf_playlist_cck_xspf_playlist_use($op, $node, $config) {
+  switch($op) {
+    case 'define' :
+      return xspf_playlist_cck_fields($config);
+    break;
+
+    case 'return':
+      // fetch items from cck fields
+      if ($items = xspf_playlist_cck_get_files_from_cck($node, $config)) {
+        return $items;
+      }
+   break;
+  }
+}
+
+
+/**
+ * This function gets a list of all CCK fields that can be used for this item
+ * @param string $config
+ * @return array
+ */
+function xspf_playlist_cck_fields($config) {
+	// get our content type's field
+	$fields = content_fields(null, $config);
+	if ($fields) {
+	  foreach ($fields as $name => $field) {
+	    // only bother with specified field types
+        if (in_array($field['type'], array('text', 'image', 'file', 'file_video', 'video_cck') )) {
+          $return['xspf_playlist_cck--'. $name] = t('CCK !type: !name', array('!type' => $field['type'], '!name' => $field['widget']['label']));
+			}
+	  }
+	  return $return;
+	}
+}
+
+
+/**
+ * Retreives files from a node cck fields
+ * format for playlist
+ * @param object $node
+ *   drupal node object
+ * @param array $config
+ *   field name being passed back in
+ * @return array of items
+ */
+function xspf_playlist_cck_get_files_from_cck($node, $config) {
+  // does this field exist on this node?
+  if ($node->{$config}) {
+    // get the field information
+    $field = content_fields($config);
+    // see if we have a handler for this field type
+    $function = 'xspf_playlist_cck_'. $field['type'] .'_handler';
+    if (function_exists($function)) {
+      return $function($node, $config);
+    }
+  }
+}
+
+
+/**
+ * handles the emfield video field type
+ * @param $node
+ * @param $field_name
+ * @return array
+ *   array of xspf items
+ */
+function xspf_playlist_cck_video_cck_handler($node, $field_name) {
+  $items = array();
+  // extract all the embeded items from this field
+  foreach ($node->{$field_name} as $field) {
+    if ($field['data']['flash']['url']) {
+      if ($xspf_item = xspf_playlist_node_build_file_item($node, $field['data']['flash']['url'])) {
+        $items[] = $xspf_item;
+      }
+    }
+  }
+  return $items;
+}
+
+
+/**
+ * handles the image field type
+ * @param $node
+ * @param $field_name
+ * @return array
+ *   array of xspf items
+ */
+function xspf_playlist_cck_image_handler($node, $field_name) {
+  $items = array();
+  // extract all the embeded items from this field
+  foreach ($node->{$field_name} as $field) {
+    if ($field['filepath']) {
+      if ($xspf_item = xspf_playlist_node_build_file_item($node, $field['filepath'])) {
+        $items[] = $xspf_item;
+      }
+    }
+  }
+  return $items;
+}
+
+
+/**
+ * handles the text field type
+ * @param $node
+ * @param $field_name
+ * @return array
+ *   array of xspf items
+ */
+function xspf_playlist_cck_text_handler($node, $field_name) {
+  $items = array();
+  // extract all the embeded items from this field
+  foreach ($node->{$field_name} as $field) {
+    if ($field['value']) {
+      if ($xspf_item = xspf_playlist_node_build_file_item($node, $field['value'])) {
+        $items[] = $xspf_item;
+      }
+    }
+  }
+  return $items;
+}

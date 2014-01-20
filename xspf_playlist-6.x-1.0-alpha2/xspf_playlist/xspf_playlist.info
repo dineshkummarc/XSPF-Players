@@ -1,0 +1,11 @@
+; $Id: xspf_playlist.info,v 1.5.2.3.2.2 2009/01/02 21:46:04 arthuregg Exp $
+name = "XSPF Playlist"
+description = "Generates XSPF playlists."
+package = "Media"
+core = 6.x
+; Information added by drupal.org packaging script on 2009-04-19
+version = "6.x-1.0-alpha2"
+core = "6.x"
+project = "xspf_playlist"
+datestamp = "1240158085"
+

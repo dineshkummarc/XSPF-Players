@@ -1,0 +1,370 @@
+.skin_preview {
+	width: 100%;
+	overflow: auto;
+	white-space: nowrap;
+	background-color: #FFF;
+	border: 1px solid #E6E6E6;
+	position: relative;
+	height: 320px;
+}
+
+div.skin_select:hover{
+	background-color: #C4E1FF;
+}
+div.skin_select:active{
+	background-color: #C4E1FF;
+}
+.skin_image_center {
+	position: absolute; 
+	top:50%;
+}
+.skin_preview_image { 
+	vertical-align: middle;
+}
+.skin_select {
+	float: left;
+	text-align: center;
+	width: 100px;
+	height: 100px;
+	margin: 0;
+	border: 0;
+	font-size: 1em;
+	line-height: 95px;
+	
+}
+
+
+.textLineURL {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	height: 24px;
+	width: 240px;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+}
+.textAreaField {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+	height: 200px;
+	width: 300px;
+	border: 1px solid #CCC;
+}
+
+.textLineVal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	height: 24px;
+	width: 120px;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+}
+.textLine100 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	height: 24px;
+	width: 100%;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+}
+
+.textLineValSmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	height: 24px;
+	width: 40px;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+}
+.dropdownList {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	width: 120px;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+	height: 24px;
+}
+/*
+div {
+	float: left;
+	text-align: center;
+	width: 150px;
+	height: 150px;
+	margin: 5px;
+	border: 1px solid #ccc;
+	font-size: 1em;
+	line-height: 148px;
+	}
+
+div img {
+	margin-top: expression(( 150 - this.height ) / 2); 
+	}
+
+html>body div img { 
+	margin-top: 0; 
+	vertical-align: middle;
+	}
+*/
+
+
+.buttonPlayerNewSave {
+	height: 24px;
+	width: 120px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 12px;
+}
+#previewWindow {
+	background-color: #FFF;
+}
+
+a {
+	color: #4180C5; 
+	text-decoration: none
+}
+a:hover {  
+	text-decoration: underline
+}
+
+body {
+	font-family: Verdana, Arial, Geneva, SunSans-Regular;
+	font-size: 11px;
+	background-position: 0px 0px;
+	padding: 0px;
+	margin: 0px;
+
+}
+.tableCells {
+	margin: 0px;
+	padding-top: 4px;
+	padding-right: 2px;
+	padding-bottom: 10px;
+	padding-left: 2px;
+}
+
+a {  color: #003399; text-decoration: none}
+a:hover {  text-decoration: underline}
+.fineprint {
+	font-size: 9px;
+}
+li {
+	font-family: Verdana, Arial, Geneva, SunSans-Regular;
+	font-size: 11px;
+}
+ul {
+	font-family: Verdana, Arial, Geneva, SunSans-Regular;
+	font-size: 11px;
+}
+/*
+div {
+	font-family: Verdana, Arial, Geneva, SunSans-Regular;
+	font-size: 11px;
+}
+*/
+
+
+.subtitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: normal;
+
+}
+.searchTexarea1 {
+	height: 15px;
+	width: 125px;
+	vertical-align: middle;
+
+}
+.searchSubmit1 {
+	height: 18px;
+	width: 50px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#000000;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0px;
+	padding: 0px;
+	background:#ECE9D8;
+}
+.codeExample {
+	background-color: #EFEFEF;
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+	font-family: "Courier New", Courier, mono;
+	font-size: 12px;
+	color: #3300FF;
+	display: block;
+	width: 90%;
+	white-space: nowrap;
+}
+
+ul {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding: 0px;
+}
+.tableMenuTitles {
+	background-color: #EBE9ED;
+}
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.optionsMenu {
+	float: left;
+	width: 400px;
+}
+.playlist_make_buttons {
+	height: 20px;
+	width: 100px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+}
+.playlist_make_lists {
+	width: 150px;
+	height: 300px;
+}
+.seeit {
+	border: thin solid #F00;
+}
+
+.playlistListWrapperSource {
+	width: 100%;
+	overflow: auto;
+	white-space: nowrap;
+	background-color: #CCC;
+	border: 1px solid #999;
+	position: relative;
+	height: 400px;
+	padding: 3px;
+}
+.playlistListWrapperEditing {
+	width: 100%;
+	overflow: auto;
+	white-space: nowrap;
+	background-color: #CCC;
+	border: 1px solid #999;
+	position: relative;
+	padding: 3px;
+}
+
+.playlistItem {
+	background-color: #FFF;
+	padding: 5px;
+	margin-bottom: 3px;
+	line-height: 18px;
+}
+
+.makeListTable {
+	width: 400px;
+	border-collapse:collapse;
+}
+.makeListTable td{
+	padding: 5px;
+	margin: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+
+#playlistTableDiv {
+	display: block;
+	width: 100%;
+}
+.faded{
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+
+.rowA{
+	background-color: #FEFEFE;
+}
+
+.rowB{
+	background-color: #F9F9F9;
+}
+.thinker {
+	background-image: url(thinker.gif);
+	background-repeat: no-repeat;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	height: 24px;
+	width: 24px;
+	position: relative;
+	top: 3px;
+}
+.rave_inline_page {
+
+}
+.rave_inline_page_wrapper {
+	position: relative;
+	right: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	border-left-color: #CCC;
+	height: 400px;
+	overflow: auto;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-top: -14px;
+	padding-top: 10px;
+}
+.shortCodeInfoBox {
+	text-align: left;
+}
+.playlistTypeBox {
+	padding-right: 20px;
+	padding-left: 10px;
+}
+div.actionBox {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #C00;
+	background-color: #FFFFEA;
+	padding: 5px;
+	border: 1px solid #FFEBBF;
+	width: 200px;
+}
+.warningBox {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	background-color: #FFFFEA;
+	padding: 5px;
+	border: 1px solid #EFEFEF;
+	width: 400px;
+}
+.textAreaPlaylist {
+	white-space: nowrap;
+	overflow:    scroll;
+	overflow-y:  hidden;
+	overflow-x:  scroll;
+	overflow:    -moz-scrollbars-horizontal;
+	width: 100%;
+}

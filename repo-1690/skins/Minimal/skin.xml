@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<skin version="0" xmlns="http://xsml.org/ns/0/"> 
+<width>33</width>
+<height>15</height>
+<name>Minimal</name> 
+<author>João Peixoto</author> 
+<email>joeindio@gmail.com</email> 
+<website></website> 
+<objects>
+<shape shape="rectangle" width="33" height="15" color="24130E" borderColor="24130E"/>
+<object label="playButton" x="3" y="3" width="9" height="9" color="FFA900" />
+<object label="volumeDisplay" x="16" y="4" width="15" height="7" color="FFA900" />
+</objects>
+</skin> 

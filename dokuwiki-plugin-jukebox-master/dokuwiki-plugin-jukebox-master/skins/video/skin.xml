@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0" xmlns="http://xsml.org/ns/0/">
+    <width>700</width>
+    <height>418</height>
+    <name>Video</name>
+    <author>Andreas Gohr</author>
+    <email>andi@splitbrain.org</email>
+    <homepage>http://www.splitbrain.org</homepage>
+    <objects>
+        <background image="images/default.png" />
+        <object label="startButton" width="700" height="418" alpha="0" />
+        <object label="playButton" x="62" y="376" scale=".7" color="333333" />
+        <object label="prevButton" x="19" y="382" scale=".35" color="333333" />
+        <object label="fwdButton" x="100" y="382" scale=".35" color="333333" />
+
+        <object label="trackDisplay" x="150" y="370" width="247" size="12" font="Trebuchet MS" />
+        <object label="timeDisplay" x="150" y="390" size="10" font="Arial" />
+        <object label="loadBar" x="180" y="395" color="dfe3c8" width="200" height="7" />
+        <object label="timeBar" x="181" y="396" width="198" height="5" color="2222222" />
+
+        <playlist x="482" y="1" width="202" height="362" selectedColor="444444" font="Trebuchet MS" />
+        <object label="scrollupButton" x="688.5" y="3" scale=".3" color="" alpha="80" />
+        <object label="scrolldownButton" x="688.5" y="350" scale=".3" color="" alpha="80" />
+        <object label="scrollButton" x="688" y="8" height="344" color="333333" alpha="" bgAlpha="0" />
+
+        <object label="volumeDisplay" x="623" y="378" width="50" height="12" color="444444" />
+
+        <object label="shuffleButton" x="470" y="376" scale=".8" color="444444" hoverMessage="Shuffle" />
+        <object label="repeatButton" x="550" y="376" scale=".8" color="444444" hoverMessage="Repeat" />
+
+        <object label="imageDisplay" x="61" y="1" width="360" height="360" />
+        <object label="videoDisplay" x="1" y="1" width="480" height="360" />
+
+<!--
+        <object label="infoButton" x="30" y="374" size="+10" color="333333" text="i" italic="1" hoverMessage="Info" />
+        <image x="18" y="114" image="images/but.png" />
+        <object label="downloadButton" x="40" y="116" size="12" color="000000" text="Download" font="Trebuchet MS" bold="1" />
+        <object label="purchaseButton" x="72" y="377" size="+5" color="222222" text="$" italic="1" hoverMessage="Purchase" />
+        <image x="290" y="49" width="150" image="images/bar.png" />
+        <text x="680" y="6" size="14" text="@" bold="1" hoverMessage="About the Jukebox..." url="http://blog.lacymorrow.com/projects/xspf-jukebox/" />
+-->
+
+    </objects>
+</skin>
